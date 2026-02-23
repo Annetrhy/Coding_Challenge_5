@@ -10,3 +10,4 @@ const employees = [
 function calculateBasePay(rate, hours) {
     const regularHours = Math.min(hours, 40);
     return regularHours * rate;
+}
