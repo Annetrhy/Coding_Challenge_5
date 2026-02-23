@@ -20,3 +20,31 @@ function calculateOvertimePay(rate, hours) {
     }
     return 0;
 }
+// Step 5: Calculate Taxes (15% deduction)
+function calculateTaxes(grossPay) {
+    const taxRate = 0.15;
+    return grossPay * taxRate;
+}
+
+// Step 6: Process Payroll
+function processPayroll(employee) {
+    const basePay = calculateBasePay(employee.hourlyRate, employee.hoursWorked);
+    const overtimePay = calculateOvertimePay(employee.hourlyRate, employee.hoursWorked);
+    const grossPay = basePay + overtimePay;
+    const taxes = calculateTaxes(grossPay);
+    const netPay = grossPay - taxes;
+
+    return {
+        name: employee.name,
+        basePay: basePay,
+        overtimePay: overtimePay,
+        grossPay: grossPay,
+        netPay: netPay
+    };
+}
+
+// Step 7: Loop Through Employees
+employees.forEach(employee => {
+    const payrollReport = processPayroll(employee);
+    console.log("Payroll Report:", payrollReport);
+});
